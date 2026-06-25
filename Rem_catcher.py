@@ -326,8 +326,8 @@ def worker_rule34(tag, amount, method, sort_type, sort_order, exclusions, net_co
         # ====================================================
         # 🔑 RULE34 ACCOUNT LOGIN
         # ====================================================
-        client.api_key = "69c74ebb1438ba4c11bb32ee8be892af9366800ce90a4ea3892b857f0dd9c77de5c16880a94d51ed56db6dc4cf792cd93b2ef27f4b4da74fcecf079e672b4507"
-        client.user_id = 6407946
+        client.api_key = "Your api key"
+        client.user_id = #your user id
         
         downloaded = 0
         page = 0
