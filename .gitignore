@@ -1,0 +1,16 @@
+```text
+# Ignore the master download folder
+Rem God/
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore virtual environments
+venv/
+env/
+
+# Ignore PyInstaller build folders
+build/
+dist/
+*.spec
