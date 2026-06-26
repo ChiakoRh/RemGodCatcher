@@ -529,7 +529,7 @@ def worker_rule34(tag, amount, method, sort_type, sort_order, exclusions, net_co
                     continue
 
                 try:
-                    resp = requests.get(file_url, stream=True, timeout=30)
+                    resp = client.session.get(file_url, stream=True, timeout=30)
                     resp.raise_for_status()
                     with open(filepath, 'wb') as f:
                         for chunk in resp.iter_content(8192):
