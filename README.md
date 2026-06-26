@@ -1,79 +1,171 @@
+<div align="center">
+
 # Rem God Catcher
 
-A powerful, cross-platform image downloading tool designed to interact with various imageboard APIs. It features a modern Glass-morphism Web UI (powered by Flask + Socket.IO) and a robust Python backend capable of batch-downloading images with advanced tag filtering.
+**A modern, cross-platform image downloader with a glass-morphism web UI.**
 
-## Features
+Supports Rule34, Safebooru, Zerochan, Waifu.im, and Nekos.best with real-time logging, advanced tag filtering, and anti-ban protections.
 
-* **Multi-Platform Support:** Built-in modules for Rule34, Safebooru, Zerochan, Waifu.im, and Nekos.best.
-* **Modern Web UI:** A sleek, dark-themed glass-morphism interface with real-time console logging. Opens in your default browser.
-* **Advanced Search Logic:**
-  * Support for `AND` & `OR` (`~`) tag queries.
-  * Tag exclusions (e.g., `-video`, `-gif`).
-  * Custom sorting (Score, ID, Ascending, Descending).
-* **Titan Engine:** Anti-ban protections, tactical delays, and a resilient retry-loop to handle slow networks and API rate limits.
-* **API Key Management:** Configure Rule34 API credentials directly from the Web UI. Keys are stored in a local `.env` file.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-yellow.svg)](https://python.org)
+[![Flask](https://img.shields.io/badge/Flask-3.x-green.svg)](https://flask.palletsprojects.com)
+
+[English](README.md) | [فارسی](README_fa.md)
+
+</div>
 
 ---
 
-## How to Customize Background Images (Wallpapers)
+## Features
 
-The Web UI changes its background wallpaper dynamically depending on the tab you are currently browsing. To personalize these wallpapers with your own images:
+- **Multi-Platform** -- Built-in modules for 5 imageboard APIs
+- **Modern Web UI** -- Glass-morphism dark theme, opens in your default browser
+- **Real-Time Logs** -- Live console output via WebSocket (Socket.IO)
+- **Advanced Search** -- AND/OR tag queries, exclusions (`-video`, `-gif`), custom sorting
+- **Anti-Ban Engine** -- Tactical delays, retry loops, rate-limit handling
+- **Proxy Support** -- Full proxy configuration from the UI (v2rayN, Clash, etc.)
+- **API Key Management** -- Manage Rule34 credentials directly from the Web UI
+- **Tag Auto-Suggest** -- Live autocomplete for all platforms
+- **Persistent Settings** -- Proxy and API keys saved in `.env`
 
-1. Navigate to the `web/wallpaper/` directory.
-2. Replace the default placeholder files with your own images. **You must keep the exact same filenames and extensions** listed below:
+---
 
-```text
-web/wallpaper/
-├── Rem_main.png     <- Main / System Setup Tab
-├── Rem_neko.jpg     <- Nekos.best Tab
-├── Rem_zero.jpg     <- Zerochan Tab
-├── Rem_waifu.png    <- Waifu.im Tab
-├── Rem_safe.jpg     <- Safebooru Tab
-└── Rem_rule34.jpg   <- Rule34 Tab
+## Screenshots
+
+> The UI features a glass-morphism dark panel with tabbed navigation for each platform, a real-time console log, and a settings panel for API keys and proxy configuration.
+
+---
+
+## Quick Start
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/YourUsername/Rem-God-Catcher.git
+cd Rem-God-Catcher
 ```
 
-Restart the application to see your custom themes in action!
+### 2. Install Dependencies
 
-## Installation & Usage
+```bash
+pip install flask flask-socketio requests urllib3 python-dotenv rule34Py
+```
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/YourUsername/Rem-God-Catcher.git
-   cd Rem-God-Catcher
-   ```
+### 3. Configure (Optional)
 
-2. Install the required Python dependencies:
-   ```bash
-   pip install flask flask-socketio requests urllib3 python-dotenv rule34Py
-   ```
+Edit `.env` or use the **API Keys** tab in the Web UI:
 
-3. (Optional) Configure your Rule34 API key:
-   - Edit the `.env` file in the project root, or
-   - Open the Web UI and go to the **API Keys** tab.
+```env
+RULE34_API_KEY=your_api_key_here
+RULE34_USER_ID=your_user_id_here
+USE_PROXY=false
+PROXY_URL=http://127.0.0.1:10808
+VERIFY_TLS=false
+```
 
-4. Launch the application:
-   ```bash
-   python Rem_catcher.py
-   ```
-   The Web UI will automatically open in your default browser at `http://127.0.0.1:5000`.
+### 4. Run
+
+```bash
+python Rem_catcher.py
+```
+
+The Web UI opens automatically at `http://127.0.0.1:5000`.
+
+---
+
+## Project Structure
+
+```
+Rem God Catcher/
+├── Rem_catcher.py          # Python backend (Flask + Socket.IO)
+├── tags.json               # Waifu.im tag database (name → slug mapping)
+├── safe_tag_names.json     # Safebooru offline tag database
+├── .env                    # API keys & proxy config (git-ignored)
+├── .gitignore
+├── LICENSE
+├── README.md
+├── README_fa.md            # Persian documentation
+├── CHANGELOG.md
+└── web/
+    ├── index.html           # Main HTML (tabs, forms, settings)
+    ├── script.js            # Frontend logic (Socket.IO + fetch API)
+    ├── style.css            # Glass-morphism dark theme (Inter font)
+    ├── Fonts/               # Offline fonts (Playfair, MonoLisa)
+    └── wallpaper/           # Background images per tab
+        ├── Rem_main.png
+        ├── Rem_neko.jpg
+        ├── Rem_zero.jpg
+        ├── Rem_waifu.png
+        ├── Rem_safe.jpg
+        └── Rem_rule34.jpg
+```
+
+---
+
+## Supported Platforms
+
+| Platform | Tags | NSFW | Notes |
+|----------|------|------|-------|
+| **Rule34** | Full search with AND/OR, exclusions, sorting | Yes | Requires API key for best results |
+| **Safebooru** | Standard tag search | No | May require proxy (Cloudflare) |
+| **Zerochan** | Tag search with live suggestions | No | Built-in retry & rate limiting |
+| **Waifu.im** | Name-to-slug conversion, NSFW toggle | Yes | Uses local `tags.json` for suggestions |
+| **Nekos.best** | Category-based (PNG / GIF) | No | Multiple format support |
+
+---
+
+## Customization
+
+### Wallpapers
+
+Replace images in `web/wallpaper/` keeping the exact filenames:
+
+| File | Tab |
+|------|-----|
+| `Rem_main.png` | Main / System Setup |
+| `Rem_neko.jpg` | Nekos.best |
+| `Rem_zero.jpg` | Zerochan |
+| `Rem_waifu.png` | Waifu.im |
+| `Rem_safe.jpg` | Safebooru |
+| `Rem_rule34.jpg` | Rule34 |
+
+### Fonts
+
+The UI uses **Inter** (Google Fonts) for the interface and **MonoLisa** for the console log. Fonts are loaded from CDN with local fallbacks in `web/Fonts/`.
+
+---
+
+## Getting Rule34 API Key
+
+1. Register at [rule34.xxx](https://rule34.xxx)
+2. Go to **My Account** -> **Settings**
+3. Find the **API Key** section -> **Generate API Key**
+4. Copy your **User ID** from the profile URL
+5. Enter both in the **API Keys** tab of the Web UI
+
+> Never share your API keys publicly.
+
+---
 
 ## Dependencies
 
-| Package | Purpose |
-|---------|---------|
-| `flask` | Web server for serving the UI and REST API |
-| `flask-socketio` | Real-time WebSocket communication for live log streaming |
-| `requests` | HTTP client for API calls and image downloads |
-| `urllib3` | Low-level HTTP utilities and retry strategies |
-| `python-dotenv` | Load API keys from `.env` file |
-| `rule34Py` | Rule34 API wrapper library |
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `flask` | 3.x | Web server |
+| `flask-socketio` | 5.x | WebSocket real-time communication |
+| `requests` | 2.x | HTTP client |
+| `urllib3` | 2.x | Retry strategies |
+| `python-dotenv` | 1.x | `.env` file loading |
+| `rule34Py` | latest | Rule34 API wrapper |
 
-## Disclaimer & Terms of Use
+---
 
-* **Educational Purposes:** This software is provided for educational and archiving purposes only.
-* **NSFW Content:** Some of the APIs supported by this tool index Not Safe For Work (NSFW) content. Users must be of legal age in their jurisdiction to use the tool for such purposes.
-* **API Limits:** This tool is designed to respect the target servers by using rate-limiting and tactical pauses. Please do not modify the code to aggressively spam requests.
+## Disclaimer
+
+This software is provided for **educational and archiving purposes only**. Some supported APIs index NSFW content -- users must be of legal age in their jurisdiction. Please respect API rate limits and do not aggressively spam requests.
+
+---
 
 ## License
 
-MIT License
+[MIT License](LICENSE)
