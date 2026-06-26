@@ -88,8 +88,7 @@ h2 {
 .tab-container { 
     padding: 4px 0;
     flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* Input Groups */
@@ -239,24 +238,6 @@ a:hover {
 
 .console-wrapper pre::-webkit-scrollbar-corner {
     background: rgba(0, 0, 0, 0.2);
-}
-
-/* Tab container scrollbar */
-.tab-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.tab-container::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.tab-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 3px;
-}
-
-.tab-container::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
 }
 
 /* Checkbox styling */
