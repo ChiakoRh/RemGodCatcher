@@ -571,9 +571,6 @@ def worker_safebooru(tag, amount, net_config):
     tag = tag.strip().lower()
     log_msg(name, f"Initializing worker for tag: '{tag}'")
 
-    # Remove parentheses from Safebooru tags (they break the search)
-    tag = tag.replace('(', '').replace(')', '')
-
     site_root = os.path.join(MASTER_FOLDER, "Safebooru")
     os.makedirs(site_root, exist_ok=True)
     dl_history = load_history(site_root)
