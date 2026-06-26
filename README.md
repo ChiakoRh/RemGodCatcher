@@ -26,7 +26,7 @@ Supports Rule34, Safebooru, Zerochan, Waifu.im, and Nekos.best with real-time lo
 - **Proxy Support** -- Full proxy configuration from the UI (v2rayN, Clash, etc.)
 - **API Key Management** -- Manage Rule34 credentials directly from the Web UI
 - **Tag Auto-Suggest** -- Live autocomplete for all platforms
-- **Persistent Settings** -- Proxy and API keys saved in `.env`
+- **Persistent Settings** -- Proxy, API keys, and download settings saved in `.env`
 
 ---
 
@@ -53,7 +53,7 @@ pip install flask flask-socketio requests urllib3 python-dotenv rule34Py
 
 ### 3. Configure (Optional)
 
-Edit `.env` or use the **API Keys** tab in the Web UI:
+Edit `.env` or use the **Options** tab in the Web UI:
 
 ```env
 RULE34_API_KEY=your_api_key_here
@@ -61,6 +61,9 @@ RULE34_USER_ID=your_user_id_here
 USE_PROXY=false
 PROXY_URL=http://127.0.0.1:10808
 VERIFY_TLS=false
+API_TIMEOUT=10
+RETRY_WAIT=5
+ANTI_BAN_PAUSE=3.0
 ```
 
 ### 4. Run
@@ -131,7 +134,7 @@ Replace images in `web/wallpaper/` keeping the exact filenames:
 
 ### Fonts
 
-The UI uses **Inter** (Google Fonts) for the interface and **MonoLisa** for the console log. Fonts are loaded from CDN with local fallbacks in `web/Fonts/`.
+The UI uses **Inter** (Google Fonts) for the interface and **Source Code Pro** for the console log. Fonts are loaded from CDN with local fallbacks in `web/Fonts/`.
 
 ---
 

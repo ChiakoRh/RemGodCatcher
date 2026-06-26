@@ -212,12 +212,15 @@ async function fetchRule34(val) {
 // ==========================================
 function openTab(tabName, wallpaperFile, btn) {
     let contents = document.getElementsByClassName("tab-content");
-    for (let i = 0; i < contents.length; i++) contents[i].style.display = "none";
+    for (let i = 0; i < contents.length; i++) {
+        contents[i].style.display = "none";
+    }
 
     let buttons = document.getElementsByClassName("tab-btn");
     for (let i = 0; i < buttons.length; i++) buttons[i].classList.remove("active");
 
-    document.getElementById(tabName).style.display = "block";
+    let tab = document.getElementById(tabName);
+    tab.style.display = "flex";
     btn.classList.add("active");
     document.body.style.backgroundImage = `url('wallpaper/${wallpaperFile}')`;
 }
