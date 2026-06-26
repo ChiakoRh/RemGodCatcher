@@ -20,7 +20,7 @@
             <button class="tab-btn" onclick="openTab('Waifu', 'Rem_waifu.png', this)">Waifu.im</button>
             <button class="tab-btn" onclick="openTab('Safe', 'Rem_safe.jpg', this)">Safebooru</button>
             <button class="tab-btn" onclick="openTab('Rule34', 'Rem_rule34.jpg', this)" style="color: #ff9ff3;">Rule34</button>
-            <button class="tab-btn" onclick="openTab('ApiSettings', 'Rem_main.png', this)" style="color: #00d2d3;">API Keys</button>
+            <button class="tab-btn" onclick="openTab('ApiSettings', 'Rem_main.png', this)" style="color: #00d2d3;">Options</button>
         </div>
 
         <div class="tab-container">
@@ -179,7 +179,8 @@
 
             <!-- API SETTINGS TAB -->
             <div id="ApiSettings" class="tab-content" style="display: none;">
-                <h2>API Settings</h2>
+                <div class="options-scroll">
+                <h2>Options</h2>
                 <p style="color: gray; font-size: 13px; margin-bottom: 15px;">Configure your Rule34 API credentials. Keys are saved to <code>.env</code> file locally.</p>
                 
                 <div class="input-group" style="flex-direction: column; align-items: flex-start; gap: 12px;">
@@ -235,6 +236,7 @@
                         <li>Copy your <b>User ID</b> from the profile URL</li>
                         <li>Paste both values above and click <b>Save to .env</b></li>
                     </ol>
+                </div>
                 </div>
             </div>
 

@@ -60,7 +60,7 @@ window.onload = async function() {
     await loadApiSettings();
 
     logToConsole("main", "Welcome to Rem God Catcher! Web Interface Online.");
-    logToConsole("main", "Configure API keys in the 'API Keys' tab for full Rule34 access.");
+    logToConsole("main", "Configure API keys and download settings in the 'Options' tab.");
 };
 
 // ==========================================
